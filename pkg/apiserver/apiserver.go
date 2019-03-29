@@ -25,11 +25,11 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 
-	"k8s.io/sample-apiserver/pkg/apis/wardle"
-	"k8s.io/sample-apiserver/pkg/apis/wardle/install"
-	wardleregistry "k8s.io/sample-apiserver/pkg/registry"
-	fischerstorage "k8s.io/sample-apiserver/pkg/registry/wardle/fischer"
-	flunderstorage "k8s.io/sample-apiserver/pkg/registry/wardle/flunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/install"
+	wardleregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
+	fischerstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/wardle/fischer"
+	flunderstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/wardle/flunder"
 )
 
 var (
@@ -96,7 +96,7 @@ func (cfg *Config) Complete() CompletedConfig {
 
 // New returns a new instance of WardleServer from the given config.
 func (c completedConfig) New() (*WardleServer, error) {
-	genericServer, err := c.GenericConfig.New("sample-apiserver", genericapiserver.NewEmptyDelegate())
+	genericServer, err := c.GenericConfig.New("custom-apiserver", genericapiserver.NewEmptyDelegate())
 	if err != nil {
 		return nil, err
 	}

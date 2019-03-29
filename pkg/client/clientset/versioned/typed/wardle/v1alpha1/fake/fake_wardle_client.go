@@ -21,7 +21,7 @@ package fake
 import (
 	rest "k8s.io/client-go/rest"
 	testing "k8s.io/client-go/testing"
-	v1alpha1 "k8s.io/sample-apiserver/pkg/client/clientset/versioned/typed/wardle/v1alpha1"
+	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/versioned/typed/wardle/v1alpha1"
 )
 
 type FakeWardleV1alpha1 struct {

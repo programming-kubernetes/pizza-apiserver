@@ -22,7 +22,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"
-	wardle "k8s.io/sample-apiserver/pkg/apis/wardle"
+	wardle "github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 )
 
 // FlunderLister helps list Flunders.

@@ -27,12 +27,12 @@ import (
 	"k8s.io/apiserver/pkg/admission"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
-	"k8s.io/sample-apiserver/pkg/admission/plugin/banflunder"
-	"k8s.io/sample-apiserver/pkg/admission/wardleinitializer"
-	"k8s.io/sample-apiserver/pkg/apis/wardle/v1alpha1"
-	"k8s.io/sample-apiserver/pkg/apiserver"
-	clientset "k8s.io/sample-apiserver/pkg/client/clientset/internalversion"
-	informers "k8s.io/sample-apiserver/pkg/client/informers/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/banflunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
+	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 )
 
 const defaultEtcdPathPrefix = "/registry/wardle.kubernetes.io"

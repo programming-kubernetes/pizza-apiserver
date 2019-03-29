@@ -19,9 +19,9 @@ limitations under the License.
 package wardle
 
 import (
-	internalinterfaces "k8s.io/sample-apiserver/pkg/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "k8s.io/sample-apiserver/pkg/client/informers/externalversions/wardle/v1alpha1"
-	v1beta1 "k8s.io/sample-apiserver/pkg/client/informers/externalversions/wardle/v1beta1"
+	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/wardle/v1alpha1"
+	v1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/wardle/v1beta1"
 )
 
 // Interface provides access to each of this group's versions.

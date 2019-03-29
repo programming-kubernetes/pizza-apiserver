@@ -25,11 +25,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apiserver/pkg/admission"
 	clienttesting "k8s.io/client-go/testing"
-	"k8s.io/sample-apiserver/pkg/admission/plugin/banflunder"
-	"k8s.io/sample-apiserver/pkg/admission/wardleinitializer"
-	"k8s.io/sample-apiserver/pkg/apis/wardle"
-	"k8s.io/sample-apiserver/pkg/client/clientset/internalversion/fake"
-	informers "k8s.io/sample-apiserver/pkg/client/informers/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/banflunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 )
 
 // TestBanfluderAdmissionPlugin tests various test cases against

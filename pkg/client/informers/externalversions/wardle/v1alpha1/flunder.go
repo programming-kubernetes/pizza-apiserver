@@ -25,10 +25,10 @@ import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"
 	cache "k8s.io/client-go/tools/cache"
-	wardlev1alpha1 "k8s.io/sample-apiserver/pkg/apis/wardle/v1alpha1"
-	versioned "k8s.io/sample-apiserver/pkg/client/clientset/versioned"
-	internalinterfaces "k8s.io/sample-apiserver/pkg/client/informers/externalversions/internalinterfaces"
-	v1alpha1 "k8s.io/sample-apiserver/pkg/client/listers/wardle/v1alpha1"
+	wardlev1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
+	versioned "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/client/listers/wardle/v1alpha1"
 )
 
 // FlunderInformer provides access to a shared informer and lister for

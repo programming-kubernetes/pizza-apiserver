@@ -25,7 +25,7 @@ import (
 	types "k8s.io/apimachinery/pkg/types"
 	watch "k8s.io/apimachinery/pkg/watch"
 	testing "k8s.io/client-go/testing"
-	wardle "k8s.io/sample-apiserver/pkg/apis/wardle"
+	wardle "github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 )
 
 // FakeFlunders implements FlunderInterface

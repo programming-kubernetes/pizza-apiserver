@@ -19,7 +19,7 @@ package v1alpha1
 import (
 	"k8s.io/apimachinery/pkg/conversion"
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/sample-apiserver/pkg/apis/wardle"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

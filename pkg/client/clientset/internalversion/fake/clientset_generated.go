@@ -24,9 +24,9 @@ import (
 	"k8s.io/client-go/discovery"
 	fakediscovery "k8s.io/client-go/discovery/fake"
 	"k8s.io/client-go/testing"
-	clientset "k8s.io/sample-apiserver/pkg/client/clientset/internalversion"
-	wardleinternalversion "k8s.io/sample-apiserver/pkg/client/clientset/internalversion/typed/wardle/internalversion"
-	fakewardleinternalversion "k8s.io/sample-apiserver/pkg/client/clientset/internalversion/typed/wardle/internalversion/fake"
+	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion"
+	wardleinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/typed/wardle/internalversion"
+	fakewardleinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/typed/wardle/internalversion/fake"
 )
 
 // NewSimpleClientset returns a clientset that will respond with the provided objects.

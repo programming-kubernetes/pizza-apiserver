@@ -20,8 +20,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apiserver/pkg/registry/generic"
 	genericregistry "k8s.io/apiserver/pkg/registry/generic/registry"
-	"k8s.io/sample-apiserver/pkg/apis/wardle"
-	"k8s.io/sample-apiserver/pkg/registry"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/registry"
 )
 
 // NewREST returns a RESTStorage object that will work against API services.

@@ -21,8 +21,8 @@ package v1beta1
 import (
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
-	v1beta1 "k8s.io/sample-apiserver/pkg/apis/wardle/v1beta1"
-	"k8s.io/sample-apiserver/pkg/client/clientset/versioned/scheme"
+	v1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1beta1"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/versioned/scheme"
 )
 
 type WardleV1beta1Interface interface {

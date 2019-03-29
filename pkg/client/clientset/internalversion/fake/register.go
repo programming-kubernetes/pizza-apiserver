@@ -24,7 +24,7 @@ import (
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
-	wardleinternalversion "k8s.io/sample-apiserver/pkg/apis/wardle"
+	wardleinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 )
 
 var scheme = runtime.NewScheme()

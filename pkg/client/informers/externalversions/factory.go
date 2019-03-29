@@ -27,9 +27,9 @@ import (
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
-	versioned "k8s.io/sample-apiserver/pkg/client/clientset/versioned"
-	internalinterfaces "k8s.io/sample-apiserver/pkg/client/informers/externalversions/internalinterfaces"
-	wardle "k8s.io/sample-apiserver/pkg/client/informers/externalversions/wardle"
+	versioned "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/versioned"
+	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/internalinterfaces"
+	wardle "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/externalversions/wardle"
 )
 
 // SharedInformerOption defines the functional option type for SharedInformerFactory.
