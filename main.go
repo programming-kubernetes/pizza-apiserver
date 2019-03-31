@@ -25,6 +25,9 @@ import (
 	"k8s.io/apiserver/pkg/util/logs"
 
 	"github.com/programming-kubernetes/custom-apiserver/pkg/cmd/server"
+
+	// load all auth plugins
+	_ "k8s.io/client-go/plugin/pkg/client/auth"
 )
 
 func main() {
