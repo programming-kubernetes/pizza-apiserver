@@ -18,12 +18,12 @@ package main
 
 import (
 	"flag"
-	"os"
 
 	"k8s.io/klog"
 
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	"k8s.io/apiserver/pkg/util/logs"
+
 	"github.com/programming-kubernetes/custom-apiserver/pkg/cmd/server"
 )
 
@@ -32,8 +32,8 @@ func main() {
 	defer logs.FlushLogs()
 
 	stopCh := genericapiserver.SetupSignalHandler()
-	options := server.NewWardleServerOptions(os.Stdout, os.Stderr)
-	cmd := server.NewCommandStartWardleServer(options, stopCh)
+	options := server.NewCustomServerOptions()
+	cmd := server.NewCommandStartCustomServer(options, stopCh)
 	cmd.Flags().AddGoFlagSet(flag.CommandLine)
 	if err := cmd.Execute(); err != nil {
 		klog.Fatal(err)

@@ -18,7 +18,6 @@ package server
 
 import (
 	"fmt"
-	"io"
 	"net"
 
 	"github.com/spf13/cobra"
@@ -27,6 +26,7 @@ import (
 	"k8s.io/apiserver/pkg/admission"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
+
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/banflunder"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
@@ -35,46 +35,41 @@ import (
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 )
 
-const defaultEtcdPathPrefix = "/registry/wardle.kubernetes.io"
+const defaultEtcdPathPrefix = "/registry/custom-apiserver.programming-kubernetes.github.com"
 
-type WardleServerOptions struct {
+type CustomServerOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions
 
 	SharedInformerFactory informers.SharedInformerFactory
-	StdOut                io.Writer
-	StdErr                io.Writer
 }
 
-func NewWardleServerOptions(out, errOut io.Writer) *WardleServerOptions {
-	o := &WardleServerOptions{
+func NewCustomServerOptions() *CustomServerOptions {
+	o := &CustomServerOptions{
 		RecommendedOptions: genericoptions.NewRecommendedOptions(
 			defaultEtcdPathPrefix,
 			apiserver.Codecs.LegacyCodec(v1alpha1.SchemeGroupVersion),
-			genericoptions.NewProcessInfo("wardle-apiserver", "wardle"),
+			genericoptions.NewProcessInfo("custom-apiserver", "custom-apiserver"),
 		),
-
-		StdOut: out,
-		StdErr: errOut,
 	}
 
 	return o
 }
 
-// NewCommandStartWardleServer provides a CLI handler for 'start master' command
-// with a default WardleServerOptions.
-func NewCommandStartWardleServer(defaults *WardleServerOptions, stopCh <-chan struct{}) *cobra.Command {
+// NewCommandStartCustomServer provides a CLI handler for 'start master' command
+// with a default CustomServerOptions.
+func NewCommandStartCustomServer(defaults *CustomServerOptions, stopCh <-chan struct{}) *cobra.Command {
 	o := *defaults
 	cmd := &cobra.Command{
-		Short: "Launch a wardle API server",
-		Long:  "Launch a wardle API server",
+		Short: "Launch a custom API server",
+		Long:  "Launch a custom API server",
 		RunE: func(c *cobra.Command, args []string) error {
 			if err := o.Complete(); err != nil {
 				return err
 			}
-			if err := o.Validate(args); err != nil {
+			if err := o.Validate(); err != nil {
 				return err
 			}
-			if err := o.RunWardleServer(stopCh); err != nil {
+			if err := o.Run(stopCh); err != nil {
 				return err
 			}
 			return nil
@@ -87,13 +82,13 @@ func NewCommandStartWardleServer(defaults *WardleServerOptions, stopCh <-chan st
 	return cmd
 }
 
-func (o WardleServerOptions) Validate(args []string) error {
+func (o CustomServerOptions) Validate() error {
 	errors := []error{}
 	errors = append(errors, o.RecommendedOptions.Validate()...)
 	return utilerrors.NewAggregate(errors)
 }
 
-func (o *WardleServerOptions) Complete() error {
+func (o *CustomServerOptions) Complete() error {
 	// register admission plugins
 	banflunder.Register(o.RecommendedOptions.Admission.Plugins)
 
@@ -103,7 +98,7 @@ func (o *WardleServerOptions) Complete() error {
 	return nil
 }
 
-func (o *WardleServerOptions) Config() (*apiserver.Config, error) {
+func (o *CustomServerOptions) Config() (*apiserver.Config, error) {
 	// TODO have a "real" external address
 	if err := o.RecommendedOptions.SecureServing.MaybeDefaultWithSelfSignedCerts("localhost", nil, []net.IP{net.ParseIP("127.0.0.1")}); err != nil {
 		return nil, fmt.Errorf("error creating self-signed certificates: %v", err)
@@ -131,7 +126,7 @@ func (o *WardleServerOptions) Config() (*apiserver.Config, error) {
 	return config, nil
 }
 
-func (o WardleServerOptions) RunWardleServer(stopCh <-chan struct{}) error {
+func (o CustomServerOptions) Run(stopCh <-chan struct{}) error {
 	config, err := o.Config()
 	if err != nil {
 		return err
@@ -142,7 +137,7 @@ func (o WardleServerOptions) RunWardleServer(stopCh <-chan struct{}) error {
 		return err
 	}
 
-	server.GenericAPIServer.AddPostStartHook("start-sample-server-informers", func(context genericapiserver.PostStartHookContext) error {
+	server.GenericAPIServer.AddPostStartHook("start-custom-server-informers", func(context genericapiserver.PostStartHookContext) error {
 		config.GenericConfig.SharedInformerFactory.Start(context.StopCh)
 		o.SharedInformerFactory.Start(context.StopCh)
 		return nil

@@ -64,8 +64,8 @@ type Config struct {
 	ExtraConfig   ExtraConfig
 }
 
-// WardleServer contains state for a Kubernetes cluster master/api server.
-type WardleServer struct {
+// CustomServer contains state for a Kubernetes cluster master/api server.
+type CustomServer struct {
 	GenericAPIServer *genericapiserver.GenericAPIServer
 }
 
@@ -94,14 +94,14 @@ func (cfg *Config) Complete() CompletedConfig {
 	return CompletedConfig{&c}
 }
 
-// New returns a new instance of WardleServer from the given config.
-func (c completedConfig) New() (*WardleServer, error) {
+// New returns a new instance of CustomServer from the given config.
+func (c completedConfig) New() (*CustomServer, error) {
 	genericServer, err := c.GenericConfig.New("custom-apiserver", genericapiserver.NewEmptyDelegate())
 	if err != nil {
 		return nil, err
 	}
 
-	s := &WardleServer{
+	s := &CustomServer{
 		GenericAPIServer: genericServer,
 	}
 
