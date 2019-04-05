@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package banflunder_test
+package customadmissionplugin_test
 
 import (
 	"testing"
@@ -25,7 +25,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apiserver/pkg/admission"
 	clienttesting "k8s.io/client-go/testing"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/banflunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
@@ -108,9 +108,9 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 			})
 			informersFactory := informers.NewSharedInformerFactory(cs, 5*time.Minute)
 
-			target, err := banflunder.New()
+			target, err := customadmissionplugin.New()
 			if err != nil {
-				t.Fatalf("scenario %d: failed to create banflunder admission plugin due to = %v", index, err)
+				t.Fatalf("scenario %d: failed to create customadmissionplugin due to = %v", index, err)
 			}
 
 			targetInitializer := wardleinitializer.New(informersFactory)
@@ -118,7 +118,7 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 
 			err = admission.ValidateInitialization(target)
 			if err != nil {
-				t.Fatalf("scenario %d: failed to initialize banflunder admission plugin due to =%v", index, err)
+				t.Fatalf("scenario %d: failed to initialize customadmissionplugin due to =%v", index, err)
 			}
 
 			stop := make(chan struct{})
@@ -146,7 +146,7 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 			}
 
 			if !scenario.admissionMustFail && err != nil {
-				t.Errorf("scenario %d: banflunder admission plugin returned unexpected error = %v", index, err)
+				t.Errorf("scenario %d: customadmissionplugin returned unexpected error = %v", index, err)
 			}
 		}()
 	}

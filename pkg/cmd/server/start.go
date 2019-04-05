@@ -27,7 +27,7 @@ import (
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/banflunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
@@ -90,10 +90,10 @@ func (o CustomServerOptions) Validate() error {
 
 func (o *CustomServerOptions) Complete() error {
 	// register admission plugins
-	banflunder.Register(o.RecommendedOptions.Admission.Plugins)
+	customadmissionplugin.Register(o.RecommendedOptions.Admission.Plugins)
 
 	// add admisison plugins to the RecommendedPluginOrder
-	o.RecommendedOptions.Admission.RecommendedPluginOrder = append(o.RecommendedOptions.Admission.RecommendedPluginOrder, "BanFlunder")
+	o.RecommendedOptions.Admission.RecommendedPluginOrder = append(o.RecommendedOptions.Admission.RecommendedPluginOrder, "CustomAdmissionPlugin")
 
 	return nil
 }

@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package banflunder
+package customadmissionplugin
 
 import (
 	"fmt"
@@ -32,22 +32,22 @@ import (
 
 // Register registers a plugin
 func Register(plugins *admission.Plugins) {
-	plugins.Register("BanFlunder", func(config io.Reader) (admission.Interface, error) {
+	plugins.Register("CustomAdmissionPlugin", func(config io.Reader) (admission.Interface, error) {
 		return New()
 	})
 }
 
-type DisallowFlunder struct {
+type CustomAdmissionPlugin struct {
 	*admission.Handler
 	lister listers.FischerLister
 }
 
-var _ = wardleinitializer.WantsInternalWardleInformerFactory(&DisallowFlunder{})
+var _ = wardleinitializer.WantsInternalWardleInformerFactory(&CustomAdmissionPlugin{})
 
 // Admit ensures that the object in-flight is of kind Flunder.
 // In addition checks that the Name is not on the banned list.
 // The list is stored in Fischers API objects.
-func (d *DisallowFlunder) Admit(a admission.Attributes) error {
+func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 	// we are only interested in flunders
 	if a.GetKind().GroupKind() != wardle.Kind("Flunder") {
 		return nil
@@ -84,13 +84,13 @@ func (d *DisallowFlunder) Admit(a admission.Attributes) error {
 
 // SetInternalWardleInformerFactory gets Lister from SharedInformerFactory.
 // The lister knows how to lists Fischers.
-func (d *DisallowFlunder) SetInternalWardleInformerFactory(f informers.SharedInformerFactory) {
+func (d *CustomAdmissionPlugin) SetInternalWardleInformerFactory(f informers.SharedInformerFactory) {
 	d.lister = f.Wardle().InternalVersion().Fischers().Lister()
 	d.SetReadyFunc(f.Wardle().InternalVersion().Fischers().Informer().HasSynced)
 }
 
 // ValidaValidateInitializationte checks whether the plugin was correctly initialized.
-func (d *DisallowFlunder) ValidateInitialization() error {
+func (d *CustomAdmissionPlugin) ValidateInitialization() error {
 	if d.lister == nil {
 		return fmt.Errorf("missing fischer lister")
 	}
@@ -98,8 +98,8 @@ func (d *DisallowFlunder) ValidateInitialization() error {
 }
 
 // New creates a new ban flunder admission plugin
-func New() (*DisallowFlunder, error) {
-	return &DisallowFlunder{
+func New() (*CustomAdmissionPlugin, error) {
+	return &CustomAdmissionPlugin{
 		Handler: admission.NewHandler(admission.Create),
 	}, nil
 }
