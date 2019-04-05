@@ -26,7 +26,7 @@ import (
 	"k8s.io/apiserver/pkg/admission"
 	clienttesting "k8s.io/client-go/testing"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
@@ -113,7 +113,7 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 				t.Fatalf("scenario %d: failed to create customadmissionplugin due to = %v", index, err)
 			}
 
-			targetInitializer := wardleinitializer.New(informersFactory)
+			targetInitializer := custominitializer.New(informersFactory)
 			targetInitializer.Initialize(target)
 
 			err = admission.ValidateInitialization(target)

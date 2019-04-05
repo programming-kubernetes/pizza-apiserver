@@ -14,15 +14,30 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package wardleinitializer
+package custominitializer
 
 import (
 	"k8s.io/apiserver/pkg/admission"
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 )
 
-// WantsInternalWardleInformerFactory defines a function which sets InformerFactory for admission plugins that need it
-type WantsInternalWardleInformerFactory interface {
-	SetInternalWardleInformerFactory(informers.SharedInformerFactory)
-	admission.InitializationValidator
+type customPluginInitializer struct {
+	informers informers.SharedInformerFactory
+}
+
+var _ admission.PluginInitializer = customPluginInitializer{}
+
+// New creates an instance of wardle admission plugins initializer.
+func New(informers informers.SharedInformerFactory) customPluginInitializer {
+	return customPluginInitializer{
+		informers: informers,
+	}
+}
+
+// Initialize checks the initialization interfaces implemented by a plugin
+// and provide the appropriate initialization data
+func (i customPluginInitializer) Initialize(plugin admission.Interface) {
+	if wants, ok := plugin.(WantsInternalWardleInformerFactory); ok {
+		wants.SetInternalWardleInformerFactory(i.informers)
+	}
 }

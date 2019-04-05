@@ -14,14 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package wardleinitializer_test
+package custominitializer_test
 
 import (
 	"testing"
 	"time"
 
 	"k8s.io/apiserver/pkg/admission"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 )
@@ -31,7 +31,7 @@ import (
 func TestWantsInternalWardleInformerFactory(t *testing.T) {
 	cs := &fake.Clientset{}
 	sf := informers.NewSharedInformerFactory(cs, time.Duration(1)*time.Second)
-	target := wardleinitializer.New(sf)
+	target := custominitializer.New(sf)
 
 	wantWardleInformerFactory := &wantInternalWardleInformerFactory{}
 	target.Initialize(wantWardleInformerFactory)
@@ -53,4 +53,4 @@ func (self *wantInternalWardleInformerFactory) Handles(o admission.Operation) bo
 func (self *wantInternalWardleInformerFactory) ValidateInitialization() error      { return nil }
 
 var _ admission.Interface = &wantInternalWardleInformerFactory{}
-var _ wardleinitializer.WantsInternalWardleInformerFactory = &wantInternalWardleInformerFactory{}
+var _ custominitializer.WantsInternalWardleInformerFactory = &wantInternalWardleInformerFactory{}

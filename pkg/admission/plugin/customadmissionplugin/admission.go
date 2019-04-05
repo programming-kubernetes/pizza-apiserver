@@ -24,7 +24,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apiserver/pkg/admission"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
 	listers "github.com/programming-kubernetes/custom-apiserver/pkg/client/listers/wardle/internalversion"
@@ -42,7 +42,7 @@ type CustomAdmissionPlugin struct {
 	lister listers.FischerLister
 }
 
-var _ = wardleinitializer.WantsInternalWardleInformerFactory(&CustomAdmissionPlugin{})
+var _ = custominitializer.WantsInternalWardleInformerFactory(&CustomAdmissionPlugin{})
 
 // Admit ensures that the object in-flight is of kind Flunder.
 // In addition checks that the Name is not on the banned list.

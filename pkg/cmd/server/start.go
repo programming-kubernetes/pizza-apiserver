@@ -28,7 +28,7 @@ import (
 	genericoptions "k8s.io/apiserver/pkg/server/options"
 
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/wardleinitializer"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
 	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion"
@@ -111,7 +111,7 @@ func (o *CustomServerOptions) Config() (*apiserver.Config, error) {
 		}
 		informerFactory := informers.NewSharedInformerFactory(client, c.LoopbackClientConfig.Timeout)
 		o.SharedInformerFactory = informerFactory
-		return []admission.PluginInitializer{wardleinitializer.New(informerFactory)}, nil
+		return []admission.PluginInitializer{custominitializer.New(informerFactory)}, nil
 	}
 
 	serverConfig := genericapiserver.NewRecommendedConfig(apiserver.Codecs)
