@@ -16,12 +16,8 @@ limitations under the License.
 
 package v1alpha1
 
-import (
-	"k8s.io/apimachinery/pkg/runtime"
-)
-
-func addDefaultingFuncs(scheme *runtime.Scheme) error {
-	return RegisterDefaults(scheme)
+func init() {
+	localSchemeBuilder.Register(RegisterDefaults)
 }
 
 func SetDefaults_FlunderSpec(obj *FlunderSpec) {
