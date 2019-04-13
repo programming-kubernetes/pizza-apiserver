@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	custominternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/custom/internalversion"
+	restaurantinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -27,19 +27,19 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	Custom() custominternalversion.CustomInterface
+	Restaurant() restaurantinternalversion.RestaurantInterface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	custom *custominternalversion.CustomClient
+	restaurant *restaurantinternalversion.RestaurantClient
 }
 
-// Custom retrieves the CustomClient
-func (c *Clientset) Custom() custominternalversion.CustomInterface {
-	return c.custom
+// Restaurant retrieves the RestaurantClient
+func (c *Clientset) Restaurant() restaurantinternalversion.RestaurantInterface {
+	return c.restaurant
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -58,7 +58,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.custom, err = custominternalversion.NewForConfig(&configShallowCopy)
+	cs.restaurant, err = restaurantinternalversion.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.custom = custominternalversion.NewForConfigOrDie(c)
+	cs.restaurant = restaurantinternalversion.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -83,7 +83,7 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.custom = custominternalversion.New(c)
+	cs.restaurant = restaurantinternalversion.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

@@ -20,8 +20,8 @@ package fake
 
 import (
 	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
-	custominternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/custom/internalversion"
-	fakecustominternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/custom/internalversion/fake"
+	restaurantinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
+	fakerestaurantinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -76,7 +76,7 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 
 var _ clientset.Interface = &Clientset{}
 
-// Custom retrieves the CustomClient
-func (c *Clientset) Custom() custominternalversion.CustomInterface {
-	return &fakecustominternalversion.FakeCustom{Fake: &c.Fake}
+// Restaurant retrieves the RestaurantClient
+func (c *Clientset) Restaurant() restaurantinternalversion.RestaurantInterface {
+	return &fakerestaurantinternalversion.FakeRestaurant{Fake: &c.Fake}
 }

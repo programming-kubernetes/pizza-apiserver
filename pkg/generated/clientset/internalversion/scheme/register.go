@@ -19,7 +19,7 @@ limitations under the License.
 package scheme
 
 import (
-	custom "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/install"
+	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/install"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -37,5 +37,5 @@ func init() {
 
 // Install registers the API group and adds types to a scheme
 func Install(scheme *runtime.Scheme) {
-	custom.Install(scheme)
+	restaurant.Install(scheme)
 }

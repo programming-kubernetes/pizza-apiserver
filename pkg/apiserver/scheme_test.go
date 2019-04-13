@@ -21,9 +21,9 @@ import (
 
 	"k8s.io/apimachinery/pkg/api/apitesting/roundtrip"
 
-	customfuzzer "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/fuzzer"
+	restaurantfuzzer "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/fuzzer"
 )
 
 func TestRoundTripTypes(t *testing.T) {
-	roundtrip.RoundTripTestForScheme(t, Scheme, customfuzzer.Funcs)
+	roundtrip.RoundTripTestForScheme(t, Scheme, restaurantfuzzer.Funcs)
 }

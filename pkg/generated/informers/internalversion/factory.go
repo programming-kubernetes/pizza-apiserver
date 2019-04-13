@@ -24,8 +24,8 @@ import (
 	time "time"
 
 	internalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
-	custom "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/custom"
 	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/restaurant"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -172,9 +172,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Custom() custom.Interface
+	Restaurant() restaurant.Interface
 }
 
-func (f *sharedInformerFactory) Custom() custom.Interface {
-	return custom.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Restaurant() restaurant.Interface {
+	return restaurant.New(f, f.namespace, f.tweakListOptions)
 }

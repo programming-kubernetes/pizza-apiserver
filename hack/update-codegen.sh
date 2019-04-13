@@ -27,7 +27,7 @@ CODEGEN_PKG=${CODEGEN_PKG:-$(cd ${SCRIPT_ROOT}; ls -d -1 ./vendor/k8s.io/code-ge
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
 bash ${CODEGEN_PKG}/generate-internal-groups.sh all \
   github.com/programming-kubernetes/custom-apiserver/pkg/generated github.com/programming-kubernetes/custom-apiserver/pkg/apis github.com/programming-kubernetes/custom-apiserver/pkg/apis \
-  "custom:v1alpha1,v1beta1" \
+  "restaurant:v1alpha1,v1beta1" \
   --output-base "$(dirname ${BASH_SOURCE})/../../../.." \
   --go-header-file ${SCRIPT_ROOT}/hack/boilerplate.go.txt
 

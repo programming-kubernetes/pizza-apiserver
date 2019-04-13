@@ -21,8 +21,8 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/v1alpha1"
-	v1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/v1beta1"
+	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
+	v1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1beta1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -53,15 +53,15 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=custom.programming-kubernetes.info, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("flunders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1alpha1().Flunders().Informer()}, nil
-	case v1alpha1.SchemeGroupVersion.WithResource("policies"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1alpha1().Policies().Informer()}, nil
+	// Group=restaurant.programming-kubernetes.info, Version=v1alpha1
+	case v1alpha1.SchemeGroupVersion.WithResource("pizzas"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Restaurant().V1alpha1().Pizzas().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("toppings"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Restaurant().V1alpha1().Toppings().Informer()}, nil
 
-		// Group=custom.programming-kubernetes.info, Version=v1beta1
-	case v1beta1.SchemeGroupVersion.WithResource("flunders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1beta1().Flunders().Informer()}, nil
+		// Group=restaurant.programming-kubernetes.info, Version=v1beta1
+	case v1beta1.SchemeGroupVersion.WithResource("pizzas"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Restaurant().V1beta1().Pizzas().Informer()}, nil
 
 	}
 

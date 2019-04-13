@@ -19,8 +19,8 @@ limitations under the License.
 package versioned
 
 import (
-	customv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1alpha1"
-	customv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1beta1"
+	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
+	restaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"
@@ -28,26 +28,26 @@ import (
 
 type Interface interface {
 	Discovery() discovery.DiscoveryInterface
-	CustomV1alpha1() customv1alpha1.CustomV1alpha1Interface
-	CustomV1beta1() customv1beta1.CustomV1beta1Interface
+	RestaurantV1alpha1() restaurantv1alpha1.RestaurantV1alpha1Interface
+	RestaurantV1beta1() restaurantv1beta1.RestaurantV1beta1Interface
 }
 
 // Clientset contains the clients for groups. Each group has exactly one
 // version included in a Clientset.
 type Clientset struct {
 	*discovery.DiscoveryClient
-	customV1alpha1 *customv1alpha1.CustomV1alpha1Client
-	customV1beta1  *customv1beta1.CustomV1beta1Client
+	restaurantV1alpha1 *restaurantv1alpha1.RestaurantV1alpha1Client
+	restaurantV1beta1  *restaurantv1beta1.RestaurantV1beta1Client
 }
 
-// CustomV1alpha1 retrieves the CustomV1alpha1Client
-func (c *Clientset) CustomV1alpha1() customv1alpha1.CustomV1alpha1Interface {
-	return c.customV1alpha1
+// RestaurantV1alpha1 retrieves the RestaurantV1alpha1Client
+func (c *Clientset) RestaurantV1alpha1() restaurantv1alpha1.RestaurantV1alpha1Interface {
+	return c.restaurantV1alpha1
 }
 
-// CustomV1beta1 retrieves the CustomV1beta1Client
-func (c *Clientset) CustomV1beta1() customv1beta1.CustomV1beta1Interface {
-	return c.customV1beta1
+// RestaurantV1beta1 retrieves the RestaurantV1beta1Client
+func (c *Clientset) RestaurantV1beta1() restaurantv1beta1.RestaurantV1beta1Interface {
+	return c.restaurantV1beta1
 }
 
 // Discovery retrieves the DiscoveryClient
@@ -66,11 +66,11 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 	}
 	var cs Clientset
 	var err error
-	cs.customV1alpha1, err = customv1alpha1.NewForConfig(&configShallowCopy)
+	cs.restaurantV1alpha1, err = restaurantv1alpha1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
-	cs.customV1beta1, err = customv1beta1.NewForConfig(&configShallowCopy)
+	cs.restaurantV1beta1, err = restaurantv1beta1.NewForConfig(&configShallowCopy)
 	if err != nil {
 		return nil, err
 	}
@@ -86,8 +86,8 @@ func NewForConfig(c *rest.Config) (*Clientset, error) {
 // panics if there is an error in the config.
 func NewForConfigOrDie(c *rest.Config) *Clientset {
 	var cs Clientset
-	cs.customV1alpha1 = customv1alpha1.NewForConfigOrDie(c)
-	cs.customV1beta1 = customv1beta1.NewForConfigOrDie(c)
+	cs.restaurantV1alpha1 = restaurantv1alpha1.NewForConfigOrDie(c)
+	cs.restaurantV1beta1 = restaurantv1beta1.NewForConfigOrDie(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClientForConfigOrDie(c)
 	return &cs
@@ -96,8 +96,8 @@ func NewForConfigOrDie(c *rest.Config) *Clientset {
 // New creates a new Clientset for the given RESTClient.
 func New(c rest.Interface) *Clientset {
 	var cs Clientset
-	cs.customV1alpha1 = customv1alpha1.New(c)
-	cs.customV1beta1 = customv1beta1.New(c)
+	cs.restaurantV1alpha1 = restaurantv1alpha1.New(c)
+	cs.restaurantV1beta1 = restaurantv1beta1.New(c)
 
 	cs.DiscoveryClient = discovery.NewDiscoveryClient(c)
 	return &cs

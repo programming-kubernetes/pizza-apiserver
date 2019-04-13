@@ -21,7 +21,7 @@ package internalversion
 import (
 	"fmt"
 
-	custom "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
+	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -52,11 +52,11 @@ func (f *genericInformer) Lister() cache.GenericLister {
 // TODO extend this to unknown resources with a client pool
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
-	// Group=custom.programming-kubernetes.info, Version=internalVersion
-	case custom.SchemeGroupVersion.WithResource("flunders"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().InternalVersion().Flunders().Informer()}, nil
-	case custom.SchemeGroupVersion.WithResource("policies"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().InternalVersion().Policies().Informer()}, nil
+	// Group=restaurant.programming-kubernetes.info, Version=internalVersion
+	case restaurant.SchemeGroupVersion.WithResource("pizzas"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Restaurant().InternalVersion().Pizzas().Informer()}, nil
+	case restaurant.SchemeGroupVersion.WithResource("toppings"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Restaurant().InternalVersion().Toppings().Informer()}, nil
 
 	}
 

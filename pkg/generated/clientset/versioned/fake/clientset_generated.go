@@ -20,10 +20,10 @@ package fake
 
 import (
 	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned"
-	customv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1alpha1"
-	fakecustomv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1alpha1/fake"
-	customv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1beta1"
-	fakecustomv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/custom/v1beta1/fake"
+	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
+	fakerestaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1/fake"
+	restaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
+	fakerestaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"
@@ -78,12 +78,12 @@ func (c *Clientset) Tracker() testing.ObjectTracker {
 
 var _ clientset.Interface = &Clientset{}
 
-// CustomV1alpha1 retrieves the CustomV1alpha1Client
-func (c *Clientset) CustomV1alpha1() customv1alpha1.CustomV1alpha1Interface {
-	return &fakecustomv1alpha1.FakeCustomV1alpha1{Fake: &c.Fake}
+// RestaurantV1alpha1 retrieves the RestaurantV1alpha1Client
+func (c *Clientset) RestaurantV1alpha1() restaurantv1alpha1.RestaurantV1alpha1Interface {
+	return &fakerestaurantv1alpha1.FakeRestaurantV1alpha1{Fake: &c.Fake}
 }
 
-// CustomV1beta1 retrieves the CustomV1beta1Client
-func (c *Clientset) CustomV1beta1() customv1beta1.CustomV1beta1Interface {
-	return &fakecustomv1beta1.FakeCustomV1beta1{Fake: &c.Fake}
+// RestaurantV1beta1 retrieves the RestaurantV1beta1Client
+func (c *Clientset) RestaurantV1beta1() restaurantv1beta1.RestaurantV1beta1Interface {
+	return &fakerestaurantv1beta1.FakeRestaurantV1beta1{Fake: &c.Fake}
 }

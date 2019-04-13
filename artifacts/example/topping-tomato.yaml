@@ -1,0 +1,6 @@
+apiVersion: restaurant.programming-kubernetes.info/v1alpha1
+kind: Topping
+metadata:
+  name: tomato
+spec:
+  cost: 0.1

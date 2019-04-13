@@ -21,8 +21,8 @@ import (
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
-// WantsInternalWardleInformerFactory defines a function which sets InformerFactory for admission plugins that need it
-type WantsInternalWardleInformerFactory interface {
-	SetInternalWardleInformerFactory(informers.SharedInformerFactory)
+// WantsInternalRestaurantInformerFactory defines a function which sets InformerFactory for admission plugins that need it
+type WantsInternalRestaurantInformerFactory interface {
+	SetInternalRestaurantInformerFactory(informers.SharedInformerFactory)
 	admission.InitializationValidator
 }

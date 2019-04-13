@@ -25,11 +25,11 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/install"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/install"
 	customregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
-	flunderstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/flunder"
-	policystorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/policy"
+	pizzastorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/restaurant/pizza"
+	toppingstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/restaurant/topping"
 )
 
 var (
@@ -105,15 +105,15 @@ func (c completedConfig) New() (*CustomServer, error) {
 		GenericAPIServer: genericServer,
 	}
 
-	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(custom.GroupName, Scheme, metav1.ParameterCodec, Codecs)
+	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(restaurant.GroupName, Scheme, metav1.ParameterCodec, Codecs)
 
 	v1alpha1storage := map[string]rest.Storage{}
-	v1alpha1storage["flunders"] = customregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
-	v1alpha1storage["policies"] = customregistry.RESTInPeace(policystorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1alpha1storage["pizzas"] = customregistry.RESTInPeace(pizzastorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1alpha1storage["toppings"] = customregistry.RESTInPeace(toppingstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
 	apiGroupInfo.VersionedResourcesStorageMap["v1alpha1"] = v1alpha1storage
 
 	v1beta1storage := map[string]rest.Storage{}
-	v1beta1storage["flunders"] = customregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1beta1storage["pizzas"] = customregistry.RESTInPeace(pizzastorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
 	apiGroupInfo.VersionedResourcesStorageMap["v1beta1"] = v1beta1storage
 
 	if err := s.GenericAPIServer.InstallAPIGroup(&apiGroupInfo); err != nil {

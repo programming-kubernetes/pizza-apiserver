@@ -27,15 +27,15 @@ import (
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/pizzatoppings"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/v1alpha1"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
 	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
 	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
-const defaultEtcdPathPrefix = "/registry/custom.programming-kubernetes.info"
+const defaultEtcdPathPrefix = "/registry/custom-apiserver.programming-kubernetes.info"
 
 type CustomServerOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions
@@ -90,10 +90,10 @@ func (o CustomServerOptions) Validate() error {
 
 func (o *CustomServerOptions) Complete() error {
 	// register admission plugins
-	customadmissionplugin.Register(o.RecommendedOptions.Admission.Plugins)
+	pizzatoppings.Register(o.RecommendedOptions.Admission.Plugins)
 
 	// add admisison plugins to the RecommendedPluginOrder
-	o.RecommendedOptions.Admission.RecommendedPluginOrder = append(o.RecommendedOptions.Admission.RecommendedPluginOrder, "CustomAdmissionPlugin")
+	o.RecommendedOptions.Admission.RecommendedPluginOrder = append(o.RecommendedOptions.Admission.RecommendedPluginOrder, "PizzaToppings")
 
 	return nil
 }
