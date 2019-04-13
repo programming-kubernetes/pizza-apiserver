@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package apiserver
+package install
 
 import (
 	"testing"
@@ -24,5 +24,5 @@ import (
 )
 
 func TestRoundTripTypes(t *testing.T) {
-	roundtrip.RoundTripTestForScheme(t, Scheme, customfuzzer.Funcs)
+	roundtrip.RoundTripTestForAPIGroup(t, Install, customfuzzer.Funcs)
 }

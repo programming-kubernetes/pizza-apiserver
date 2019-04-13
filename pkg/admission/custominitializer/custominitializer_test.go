@@ -22,8 +22,8 @@ import (
 
 	"k8s.io/apiserver/pkg/admission"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/fake"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
 // TestWantsInternalWardleInformerFactory ensures that the informer factory is injected

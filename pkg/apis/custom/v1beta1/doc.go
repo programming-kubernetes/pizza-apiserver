@@ -1,5 +1,5 @@
 /*
-Copyright 2017 The Kubernetes Authors.
+Copyright 2018 The Kubernetes Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,15 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package apiserver
+// +k8s:deepcopy-gen=package
+// +k8s:conversion-gen=github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom
+// +k8s:defaulter-gen=TypeMeta
+// +groupName=custom.programming-kubernetes.info
 
-import (
-	"testing"
-
-	"k8s.io/apimachinery/pkg/api/apitesting/roundtrip"
-	customfuzzer "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/fuzzer"
-)
-
-func TestRoundTripTypes(t *testing.T) {
-	roundtrip.RoundTripTestForScheme(t, Scheme, customfuzzer.Funcs)
-}
+// Package v1beta1 is the v1beta1 version of the API.
+package v1beta1

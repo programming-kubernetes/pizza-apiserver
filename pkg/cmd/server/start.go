@@ -29,13 +29,13 @@ import (
 
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/v1alpha1"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/v1alpha1"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
-	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
+	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
-const defaultEtcdPathPrefix = "/registry/custom-apiserver.programming-kubernetes.github.com"
+const defaultEtcdPathPrefix = "/registry/custom.programming-kubernetes.info"
 
 type CustomServerOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions

@@ -25,11 +25,11 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle/install"
-	wardleregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
-	fischerstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/wardle/fischer"
-	flunderstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/wardle/flunder"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/install"
+	customregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
+	fischerstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/fischer"
+	flunderstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/flunder"
 )
 
 var (
@@ -105,15 +105,15 @@ func (c completedConfig) New() (*CustomServer, error) {
 		GenericAPIServer: genericServer,
 	}
 
-	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(wardle.GroupName, Scheme, metav1.ParameterCodec, Codecs)
+	apiGroupInfo := genericapiserver.NewDefaultAPIGroupInfo(custom.GroupName, Scheme, metav1.ParameterCodec, Codecs)
 
 	v1alpha1storage := map[string]rest.Storage{}
-	v1alpha1storage["flunders"] = wardleregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
-	v1alpha1storage["fischers"] = wardleregistry.RESTInPeace(fischerstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1alpha1storage["flunders"] = customregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1alpha1storage["fischers"] = customregistry.RESTInPeace(fischerstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
 	apiGroupInfo.VersionedResourcesStorageMap["v1alpha1"] = v1alpha1storage
 
 	v1beta1storage := map[string]rest.Storage{}
-	v1beta1storage["flunders"] = wardleregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1beta1storage["flunders"] = customregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
 	apiGroupInfo.VersionedResourcesStorageMap["v1beta1"] = v1beta1storage
 
 	if err := s.GenericAPIServer.InstallAPIGroup(&apiGroupInfo); err != nil {

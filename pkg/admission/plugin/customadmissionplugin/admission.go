@@ -25,9 +25,9 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apiserver/pkg/admission"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
-	listers "github.com/programming-kubernetes/custom-apiserver/pkg/client/listers/wardle/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
+	listers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/custom/internalversion"
 )
 
 // Register registers a plugin
@@ -49,7 +49,7 @@ var _ = custominitializer.WantsInternalWardleInformerFactory(&CustomAdmissionPlu
 // The list is stored in Fischers API objects.
 func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 	// we are only interested in flunders
-	if a.GetKind().GroupKind() != wardle.Kind("Flunder") {
+	if a.GetKind().GroupKind() != custom.Kind("Flunder") {
 		return nil
 	}
 
@@ -85,8 +85,8 @@ func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 // SetInternalWardleInformerFactory gets Lister from SharedInformerFactory.
 // The lister knows how to lists Fischers.
 func (d *CustomAdmissionPlugin) SetInternalWardleInformerFactory(f informers.SharedInformerFactory) {
-	d.lister = f.Wardle().InternalVersion().Fischers().Lister()
-	d.SetReadyFunc(f.Wardle().InternalVersion().Fischers().Informer().HasSynced)
+	d.lister = f.Custom().InternalVersion().Fischers().Lister()
+	d.SetReadyFunc(f.Custom().InternalVersion().Fischers().Informer().HasSynced)
 }
 
 // ValidaValidateInitializationte checks whether the plugin was correctly initialized.

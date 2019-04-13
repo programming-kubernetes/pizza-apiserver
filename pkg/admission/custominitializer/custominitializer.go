@@ -18,7 +18,7 @@ package custominitializer
 
 import (
 	"k8s.io/apiserver/pkg/admission"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
 type customPluginInitializer struct {
@@ -27,7 +27,7 @@ type customPluginInitializer struct {
 
 var _ admission.PluginInitializer = customPluginInitializer{}
 
-// New creates an instance of wardle admission plugins initializer.
+// New creates an instance of custom admission plugins initializer.
 func New(informers informers.SharedInformerFactory) customPluginInitializer {
 	return customPluginInitializer{
 		informers: informers,

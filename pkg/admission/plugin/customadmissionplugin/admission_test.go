@@ -27,17 +27,17 @@ import (
 	clienttesting "k8s.io/client-go/testing"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/customadmissionplugin"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/wardle"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/client/clientset/internalversion/fake"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/fake"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
 // TestBanfluderAdmissionPlugin tests various test cases against
 // ban flunder admission plugin
 func TestBanflunderAdmissionPlugin(t *testing.T) {
 	var scenarios = []struct {
-		informersOutput        wardle.FischerList
-		admissionInput         wardle.Flunder
+		informersOutput        custom.FischerList
+		admissionInput         custom.Flunder
 		admissionInputKind     schema.GroupVersionKind
 		admissionInputResource schema.GroupVersionResource
 		admissionMustFail      bool
@@ -45,56 +45,56 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 		// scenario 1:
 		// a flunder with a name that appears on a list of disallowed flunders must be banned
 		{
-			informersOutput: wardle.FischerList{
-				Items: []wardle.Fischer{
+			informersOutput: custom.FischerList{
+				Items: []custom.Fischer{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
-			admissionInput: wardle.Flunder{
+			admissionInput: custom.Flunder{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:      "badname",
 					Namespace: "",
 				},
 			},
-			admissionInputKind:     wardle.Kind("Flunder").WithVersion("version"),
-			admissionInputResource: wardle.Resource("flunders").WithVersion("version"),
+			admissionInputKind:     custom.Kind("Flunder").WithVersion("version"),
+			admissionInputResource: custom.Resource("flunders").WithVersion("version"),
 			admissionMustFail:      true,
 		},
 		// scenario 2:
 		// a flunder with a name that does not appear on a list of disallowed flunders must be admitted
 		{
-			informersOutput: wardle.FischerList{
-				Items: []wardle.Fischer{
+			informersOutput: custom.FischerList{
+				Items: []custom.Fischer{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
-			admissionInput: wardle.Flunder{
+			admissionInput: custom.Flunder{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:      "goodname",
 					Namespace: "",
 				},
 			},
-			admissionInputKind:     wardle.Kind("Flunder").WithVersion("version"),
-			admissionInputResource: wardle.Resource("flunders").WithVersion("version"),
+			admissionInputKind:     custom.Kind("Flunder").WithVersion("version"),
+			admissionInputResource: custom.Resource("flunders").WithVersion("version"),
 			admissionMustFail:      false,
 		},
 		// scenario 3:
 		// a flunder with a name that appears on a list of disallowed flunders would be banned
 		// but the kind passed in is not a flunder thus the whole request is accepted
 		{
-			informersOutput: wardle.FischerList{
-				Items: []wardle.Fischer{
+			informersOutput: custom.FischerList{
+				Items: []custom.Fischer{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
-			admissionInput: wardle.Flunder{
+			admissionInput: custom.Flunder{
 				ObjectMeta: metav1.ObjectMeta{
 					Name:      "badname",
 					Namespace: "",
 				},
 			},
-			admissionInputKind:     wardle.Kind("NotFlunder").WithVersion("version"),
-			admissionInputResource: wardle.Resource("notflunders").WithVersion("version"),
+			admissionInputKind:     custom.Kind("NotFlunder").WithVersion("version"),
+			admissionInputResource: custom.Resource("notflunders").WithVersion("version"),
 			admissionMustFail:      false,
 		},
 	}

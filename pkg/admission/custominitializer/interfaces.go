@@ -18,7 +18,7 @@ package custominitializer
 
 import (
 	"k8s.io/apiserver/pkg/admission"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/client/informers/internalversion"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
 )
 
 // WantsInternalWardleInformerFactory defines a function which sets InformerFactory for admission plugins that need it

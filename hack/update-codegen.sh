@@ -25,10 +25,10 @@ CODEGEN_PKG=${CODEGEN_PKG:-$(cd ${SCRIPT_ROOT}; ls -d -1 ./vendor/k8s.io/code-ge
 # --output-base    because this script should also be able to run inside the vendor dir of
 #                  k8s.io/kubernetes. The output-base is needed for the generators to output into the vendor dir
 #                  instead of the $GOPATH directly. For normal projects this can be dropped.
-${CODEGEN_PKG}/generate-internal-groups.sh all \
-  github.com/programming-kubernetes/custom-apiserver/pkg/client github.com/programming-kubernetes/custom-apiserver/pkg/apis github.com/programming-kubernetes/custom-apiserver/pkg/apis \
-  "wardle:v1alpha1,v1beta1" \
-  --output-base "$(dirname ${BASH_SOURCE})/../../.." \
+bash ${CODEGEN_PKG}/generate-internal-groups.sh all \
+  github.com/programming-kubernetes/custom-apiserver/pkg/generated github.com/programming-kubernetes/custom-apiserver/pkg/apis github.com/programming-kubernetes/custom-apiserver/pkg/apis \
+  "custom:v1alpha1,v1beta1" \
+  --output-base "$(dirname ${BASH_SOURCE})/../../../.." \
   --go-header-file ${SCRIPT_ROOT}/hack/boilerplate.go.txt
 
 # To use your own boilerplate text use:
