@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package fischer
+package policy
 
 import (
 	"context"
@@ -31,24 +31,24 @@ import (
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
 )
 
-// NewStrategy creates and returns a fischerStrategy instance
-func NewStrategy(typer runtime.ObjectTyper) fischerStrategy {
-	return fischerStrategy{typer, names.SimpleNameGenerator}
+// NewStrategy creates and returns a policyStrategy instance
+func NewStrategy(typer runtime.ObjectTyper) policyStrategy {
+	return policyStrategy{typer, names.SimpleNameGenerator}
 }
 
 // GetAttrs returns labels.Set, fields.Set, the presence of Initializers if any
-// and error in case the given runtime.Object is not a Fischer
+// and error in case the given runtime.Object is not a Policy
 func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
-	apiserver, ok := obj.(*custom.Fischer)
+	apiserver, ok := obj.(*custom.Policy)
 	if !ok {
-		return nil, nil, false, fmt.Errorf("given object is not a Fischer")
+		return nil, nil, false, fmt.Errorf("given object is not a Policy")
 	}
 	return labels.Set(apiserver.ObjectMeta.Labels), SelectableFields(apiserver), apiserver.Initializers != nil, nil
 }
 
-// MatchFischer is the filter used by the generic etcd backend to watch events
+// MatchPolicy is the filter used by the generic etcd backend to watch events
 // from etcd to clients of the apiserver only interested in specific labels/fields.
-func MatchFischer(label labels.Selector, field fields.Selector) storage.SelectionPredicate {
+func MatchPolicy(label labels.Selector, field fields.Selector) storage.SelectionPredicate {
 	return storage.SelectionPredicate{
 		Label:    label,
 		Field:    field,
@@ -57,40 +57,40 @@ func MatchFischer(label labels.Selector, field fields.Selector) storage.Selectio
 }
 
 // SelectableFields returns a field set that represents the object.
-func SelectableFields(obj *custom.Fischer) fields.Set {
+func SelectableFields(obj *custom.Policy) fields.Set {
 	return generic.ObjectMetaFieldsSet(&obj.ObjectMeta, true)
 }
 
-type fischerStrategy struct {
+type policyStrategy struct {
 	runtime.ObjectTyper
 	names.NameGenerator
 }
 
-func (fischerStrategy) NamespaceScoped() bool {
+func (policyStrategy) NamespaceScoped() bool {
 	return false
 }
 
-func (fischerStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
+func (policyStrategy) PrepareForCreate(ctx context.Context, obj runtime.Object) {
 }
 
-func (fischerStrategy) PrepareForUpdate(ctx context.Context, obj, old runtime.Object) {
+func (policyStrategy) PrepareForUpdate(ctx context.Context, obj, old runtime.Object) {
 }
 
-func (fischerStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
+func (policyStrategy) Validate(ctx context.Context, obj runtime.Object) field.ErrorList {
 	return field.ErrorList{}
 }
 
-func (fischerStrategy) AllowCreateOnUpdate() bool {
+func (policyStrategy) AllowCreateOnUpdate() bool {
 	return false
 }
 
-func (fischerStrategy) AllowUnconditionalUpdate() bool {
+func (policyStrategy) AllowUnconditionalUpdate() bool {
 	return false
 }
 
-func (fischerStrategy) Canonicalize(obj runtime.Object) {
+func (policyStrategy) Canonicalize(obj runtime.Object) {
 }
 
-func (fischerStrategy) ValidateUpdate(ctx context.Context, obj, old runtime.Object) field.ErrorList {
+func (policyStrategy) ValidateUpdate(ctx context.Context, obj, old runtime.Object) field.ErrorList {
 	return field.ErrorList{}
 }

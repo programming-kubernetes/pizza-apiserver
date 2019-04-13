@@ -47,8 +47,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 	scheme.AddKnownTypes(SchemeGroupVersion,
 		&Flunder{},
 		&FlunderList{},
-		&Fischer{},
-		&FischerList{},
+		&Policy{},
+		&PolicyList{},
 	)
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)
 	return nil

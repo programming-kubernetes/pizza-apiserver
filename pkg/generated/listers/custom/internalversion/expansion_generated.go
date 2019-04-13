@@ -18,10 +18,6 @@ limitations under the License.
 
 package internalversion
 
-// FischerListerExpansion allows custom methods to be added to
-// FischerLister.
-type FischerListerExpansion interface{}
-
 // FlunderListerExpansion allows custom methods to be added to
 // FlunderLister.
 type FlunderListerExpansion interface{}
@@ -29,3 +25,7 @@ type FlunderListerExpansion interface{}
 // FlunderNamespaceListerExpansion allows custom methods to be added to
 // FlunderNamespaceLister.
 type FlunderNamespaceListerExpansion interface{}
+
+// PolicyListerExpansion allows custom methods to be added to
+// PolicyLister.
+type PolicyListerExpansion interface{}

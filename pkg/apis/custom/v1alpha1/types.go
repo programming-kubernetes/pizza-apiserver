@@ -32,7 +32,7 @@ type ReferenceType string
 
 const (
 	FlunderReferenceType = ReferenceType("Flunder")
-	FischerReferenceType = ReferenceType("Fischer")
+	FischerReferenceType = ReferenceType("Policy")
 )
 
 type FlunderSpec struct {
@@ -60,7 +60,7 @@ type Flunder struct {
 // +genclient:nonNamespaced
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-type Fischer struct {
+type Policy struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 
@@ -71,10 +71,10 @@ type Fischer struct {
 // +genclient:nonNamespaced
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
 
-// FischerList is a list of Fischer objects.
-type FischerList struct {
+// PolicyList is a list of Policy objects.
+type PolicyList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 
-	Items []Fischer `json:"items" protobuf:"bytes,2,rep,name=items"`
+	Items []Policy `json:"items" protobuf:"bytes,2,rep,name=items"`
 }

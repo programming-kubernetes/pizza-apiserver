@@ -39,15 +39,15 @@ func ValidateFlunderSpec(s *custom.FlunderSpec, fldPath *field.Path) field.Error
 	} else if len(s.FlunderReference) != 0 && s.ReferenceType != custom.FlunderReferenceType {
 		allErrs = append(allErrs, field.Invalid(fldPath.Child("flunderReference"), s.FlunderReference, "cannot be set if referenceType is not Flunder"))
 	} else if len(s.FischerReference) != 0 && s.ReferenceType != custom.FischerReferenceType {
-		allErrs = append(allErrs, field.Invalid(fldPath.Child("fischerReference"), s.FischerReference, "cannot be set if referenceType is not Fischer"))
+		allErrs = append(allErrs, field.Invalid(fldPath.Child("fischerReference"), s.FischerReference, "cannot be set if referenceType is not Policy"))
 	} else if len(s.FischerReference) == 0 && s.ReferenceType == custom.FischerReferenceType {
-		allErrs = append(allErrs, field.Invalid(fldPath.Child("fischerReference"), s.FischerReference, "cannot be empty if referenceType is Fischer"))
+		allErrs = append(allErrs, field.Invalid(fldPath.Child("fischerReference"), s.FischerReference, "cannot be empty if referenceType is Policy"))
 	} else if len(s.FlunderReference) == 0 && s.ReferenceType == custom.FlunderReferenceType {
 		allErrs = append(allErrs, field.Invalid(fldPath.Child("flunderReference"), s.FlunderReference, "cannot be empty if referenceType is Flunder"))
 	}
 
 	if len(s.ReferenceType) != 0 && s.ReferenceType != custom.FischerReferenceType && s.ReferenceType != custom.FlunderReferenceType {
-		allErrs = append(allErrs, field.Invalid(fldPath.Child("referenceType"), s.ReferenceType, "must be Flunder or Fischer"))
+		allErrs = append(allErrs, field.Invalid(fldPath.Child("referenceType"), s.ReferenceType, "must be Flunder or Policy"))
 	}
 
 	return allErrs

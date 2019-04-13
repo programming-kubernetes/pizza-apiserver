@@ -25,41 +25,41 @@ import (
 	"k8s.io/client-go/tools/cache"
 )
 
-// FischerLister helps list Fischers.
-type FischerLister interface {
-	// List lists all Fischers in the indexer.
-	List(selector labels.Selector) (ret []*v1alpha1.Fischer, err error)
-	// Get retrieves the Fischer from the index for a given name.
-	Get(name string) (*v1alpha1.Fischer, error)
-	FischerListerExpansion
+// PolicyLister helps list Policies.
+type PolicyLister interface {
+	// List lists all Policies in the indexer.
+	List(selector labels.Selector) (ret []*v1alpha1.Policy, err error)
+	// Get retrieves the Policy from the index for a given name.
+	Get(name string) (*v1alpha1.Policy, error)
+	PolicyListerExpansion
 }
 
-// fischerLister implements the FischerLister interface.
-type fischerLister struct {
+// policyLister implements the PolicyLister interface.
+type policyLister struct {
 	indexer cache.Indexer
 }
 
-// NewFischerLister returns a new FischerLister.
-func NewFischerLister(indexer cache.Indexer) FischerLister {
-	return &fischerLister{indexer: indexer}
+// NewPolicyLister returns a new PolicyLister.
+func NewPolicyLister(indexer cache.Indexer) PolicyLister {
+	return &policyLister{indexer: indexer}
 }
 
-// List lists all Fischers in the indexer.
-func (s *fischerLister) List(selector labels.Selector) (ret []*v1alpha1.Fischer, err error) {
+// List lists all Policies in the indexer.
+func (s *policyLister) List(selector labels.Selector) (ret []*v1alpha1.Policy, err error) {
 	err = cache.ListAll(s.indexer, selector, func(m interface{}) {
-		ret = append(ret, m.(*v1alpha1.Fischer))
+		ret = append(ret, m.(*v1alpha1.Policy))
 	})
 	return ret, err
 }
 
-// Get retrieves the Fischer from the index for a given name.
-func (s *fischerLister) Get(name string) (*v1alpha1.Fischer, error) {
+// Get retrieves the Policy from the index for a given name.
+func (s *policyLister) Get(name string) (*v1alpha1.Policy, error) {
 	obj, exists, err := s.indexer.GetByKey(name)
 	if err != nil {
 		return nil, err
 	}
 	if !exists {
-		return nil, errors.NewNotFound(v1alpha1.Resource("fischer"), name)
+		return nil, errors.NewNotFound(v1alpha1.Resource("policy"), name)
 	}
-	return obj.(*v1alpha1.Fischer), nil
+	return obj.(*v1alpha1.Policy), nil
 }

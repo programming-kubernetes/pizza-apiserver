@@ -36,7 +36,7 @@ import (
 // ban flunder admission plugin
 func TestBanflunderAdmissionPlugin(t *testing.T) {
 	var scenarios = []struct {
-		informersOutput        custom.FischerList
+		informersOutput        custom.PolicyList
 		admissionInput         custom.Flunder
 		admissionInputKind     schema.GroupVersionKind
 		admissionInputResource schema.GroupVersionResource
@@ -45,8 +45,8 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 		// scenario 1:
 		// a flunder with a name that appears on a list of disallowed flunders must be banned
 		{
-			informersOutput: custom.FischerList{
-				Items: []custom.Fischer{
+			informersOutput: custom.PolicyList{
+				Items: []custom.Policy{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
@@ -63,8 +63,8 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 		// scenario 2:
 		// a flunder with a name that does not appear on a list of disallowed flunders must be admitted
 		{
-			informersOutput: custom.FischerList{
-				Items: []custom.Fischer{
+			informersOutput: custom.PolicyList{
+				Items: []custom.Policy{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
@@ -82,8 +82,8 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 		// a flunder with a name that appears on a list of disallowed flunders would be banned
 		// but the kind passed in is not a flunder thus the whole request is accepted
 		{
-			informersOutput: custom.FischerList{
-				Items: []custom.Fischer{
+			informersOutput: custom.PolicyList{
+				Items: []custom.Policy{
 					{DisallowedFlunders: []string{"badname"}},
 				},
 			},
@@ -103,7 +103,7 @@ func TestBanflunderAdmissionPlugin(t *testing.T) {
 		func() {
 			// prepare
 			cs := &fake.Clientset{}
-			cs.AddReactor("list", "fischers", func(action clienttesting.Action) (bool, runtime.Object, error) {
+			cs.AddReactor("list", "policies", func(action clienttesting.Action) (bool, runtime.Object, error) {
 				return true, &scenario.informersOutput, nil
 			})
 			informersFactory := informers.NewSharedInformerFactory(cs, 5*time.Minute)

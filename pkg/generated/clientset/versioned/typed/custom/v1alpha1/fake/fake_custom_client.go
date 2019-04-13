@@ -28,12 +28,12 @@ type FakeCustomV1alpha1 struct {
 	*testing.Fake
 }
 
-func (c *FakeCustomV1alpha1) Fischers() v1alpha1.FischerInterface {
-	return &FakeFischers{c}
-}
-
 func (c *FakeCustomV1alpha1) Flunders(namespace string) v1alpha1.FlunderInterface {
 	return &FakeFlunders{c, namespace}
+}
+
+func (c *FakeCustomV1alpha1) Policies() v1alpha1.PolicyInterface {
+	return &FakePolicies{c}
 }
 
 // RESTClient returns a RESTClient that is used to communicate

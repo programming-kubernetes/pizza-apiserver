@@ -28,8 +28,8 @@ import (
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/install"
 	customregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
-	fischerstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/fischer"
 	flunderstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/flunder"
+	policystorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/custom/policy"
 )
 
 var (
@@ -109,7 +109,7 @@ func (c completedConfig) New() (*CustomServer, error) {
 
 	v1alpha1storage := map[string]rest.Storage{}
 	v1alpha1storage["flunders"] = customregistry.RESTInPeace(flunderstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
-	v1alpha1storage["fischers"] = customregistry.RESTInPeace(fischerstorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
+	v1alpha1storage["policies"] = customregistry.RESTInPeace(policystorage.NewREST(Scheme, c.GenericConfig.RESTOptionsGetter))
 	apiGroupInfo.VersionedResourcesStorageMap["v1alpha1"] = v1alpha1storage
 
 	v1beta1storage := map[string]rest.Storage{}

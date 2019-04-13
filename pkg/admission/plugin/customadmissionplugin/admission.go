@@ -39,14 +39,14 @@ func Register(plugins *admission.Plugins) {
 
 type CustomAdmissionPlugin struct {
 	*admission.Handler
-	lister listers.FischerLister
+	lister listers.PolicyLister
 }
 
 var _ = custominitializer.WantsInternalWardleInformerFactory(&CustomAdmissionPlugin{})
 
 // Admit ensures that the object in-flight is of kind Flunder.
 // In addition checks that the Name is not on the banned list.
-// The list is stored in Fischers API objects.
+// The list is stored in Policy API objects.
 func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 	// we are only interested in flunders
 	if a.GetKind().GroupKind() != custom.Kind("Flunder") {
@@ -63,13 +63,13 @@ func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 	}
 	flunderName := metaAccessor.GetName()
 
-	fischers, err := d.lister.List(labels.Everything())
+	policies, err := d.lister.List(labels.Everything())
 	if err != nil {
 		return err
 	}
 
-	for _, fischer := range fischers {
-		for _, disallowedFlunder := range fischer.DisallowedFlunders {
+	for _, policy := range policies {
+		for _, disallowedFlunder := range policy.DisallowedFlunders {
 			if flunderName == disallowedFlunder {
 				return errors.NewForbidden(
 					a.GetResource().GroupResource(),
@@ -83,16 +83,16 @@ func (d *CustomAdmissionPlugin) Admit(a admission.Attributes) error {
 }
 
 // SetInternalWardleInformerFactory gets Lister from SharedInformerFactory.
-// The lister knows how to lists Fischers.
+// The lister knows how to lists Policies.
 func (d *CustomAdmissionPlugin) SetInternalWardleInformerFactory(f informers.SharedInformerFactory) {
-	d.lister = f.Custom().InternalVersion().Fischers().Lister()
-	d.SetReadyFunc(f.Custom().InternalVersion().Fischers().Informer().HasSynced)
+	d.lister = f.Custom().InternalVersion().Policies().Lister()
+	d.SetReadyFunc(f.Custom().InternalVersion().Policies().Informer().HasSynced)
 }
 
 // ValidaValidateInitializationte checks whether the plugin was correctly initialized.
 func (d *CustomAdmissionPlugin) ValidateInitialization() error {
 	if d.lister == nil {
-		return fmt.Errorf("missing fischer lister")
+		return fmt.Errorf("missing policy lister")
 	}
 	return nil
 }

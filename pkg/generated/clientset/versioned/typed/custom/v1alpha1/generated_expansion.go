@@ -18,6 +18,6 @@ limitations under the License.
 
 package v1alpha1
 
-type FischerExpansion interface{}
-
 type FlunderExpansion interface{}
+
+type PolicyExpansion interface{}

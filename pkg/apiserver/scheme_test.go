@@ -20,6 +20,7 @@ import (
 	"testing"
 
 	"k8s.io/apimachinery/pkg/api/apitesting/roundtrip"
+
 	customfuzzer "github.com/programming-kubernetes/custom-apiserver/pkg/apis/custom/fuzzer"
 )
 

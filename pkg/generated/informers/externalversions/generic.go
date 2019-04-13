@@ -54,10 +54,10 @@ func (f *genericInformer) Lister() cache.GenericLister {
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
 	// Group=custom.programming-kubernetes.info, Version=v1alpha1
-	case v1alpha1.SchemeGroupVersion.WithResource("fischers"):
-		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1alpha1().Fischers().Informer()}, nil
 	case v1alpha1.SchemeGroupVersion.WithResource("flunders"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1alpha1().Flunders().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("policies"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Custom().V1alpha1().Policies().Informer()}, nil
 
 		// Group=custom.programming-kubernetes.info, Version=v1beta1
 	case v1beta1.SchemeGroupVersion.WithResource("flunders"):

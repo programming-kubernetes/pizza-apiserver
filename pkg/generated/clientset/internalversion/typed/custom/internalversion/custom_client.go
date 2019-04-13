@@ -25,8 +25,8 @@ import (
 
 type CustomInterface interface {
 	RESTClient() rest.Interface
-	FischersGetter
 	FlundersGetter
+	PoliciesGetter
 }
 
 // CustomClient is used to interact with features provided by the custom.programming-kubernetes.info group.
@@ -34,12 +34,12 @@ type CustomClient struct {
 	restClient rest.Interface
 }
 
-func (c *CustomClient) Fischers() FischerInterface {
-	return newFischers(c)
-}
-
 func (c *CustomClient) Flunders(namespace string) FlunderInterface {
 	return newFlunders(c, namespace)
+}
+
+func (c *CustomClient) Policies() PolicyInterface {
+	return newPolicies(c)
 }
 
 // NewForConfig creates a new CustomClient for the given config.

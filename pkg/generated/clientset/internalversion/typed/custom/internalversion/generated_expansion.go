@@ -18,6 +18,6 @@ limitations under the License.
 
 package internalversion
 
-type FischerExpansion interface{}
-
 type FlunderExpansion interface{}
+
+type PolicyExpansion interface{}

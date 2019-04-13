@@ -24,10 +24,10 @@ import (
 
 // Interface provides access to all the informers in this group version.
 type Interface interface {
-	// Fischers returns a FischerInformer.
-	Fischers() FischerInformer
 	// Flunders returns a FlunderInformer.
 	Flunders() FlunderInformer
+	// Policies returns a PolicyInformer.
+	Policies() PolicyInformer
 }
 
 type version struct {
@@ -41,12 +41,12 @@ func New(f internalinterfaces.SharedInformerFactory, namespace string, tweakList
 	return &version{factory: f, namespace: namespace, tweakListOptions: tweakListOptions}
 }
 
-// Fischers returns a FischerInformer.
-func (v *version) Fischers() FischerInformer {
-	return &fischerInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
-}
-
 // Flunders returns a FlunderInformer.
 func (v *version) Flunders() FlunderInformer {
 	return &flunderInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// Policies returns a PolicyInformer.
+func (v *version) Policies() PolicyInformer {
+	return &policyInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
 }

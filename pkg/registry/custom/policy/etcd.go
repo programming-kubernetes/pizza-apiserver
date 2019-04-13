@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package fischer
+package policy
 
 import (
 	"k8s.io/apimachinery/pkg/runtime"
@@ -29,10 +29,10 @@ func NewREST(scheme *runtime.Scheme, optsGetter generic.RESTOptionsGetter) (*reg
 	strategy := NewStrategy(scheme)
 
 	store := &genericregistry.Store{
-		NewFunc:                  func() runtime.Object { return &custom.Fischer{} },
-		NewListFunc:              func() runtime.Object { return &custom.FischerList{} },
-		PredicateFunc:            MatchFischer,
-		DefaultQualifiedResource: custom.Resource("fischers"),
+		NewFunc:                  func() runtime.Object { return &custom.Policy{} },
+		NewListFunc:              func() runtime.Object { return &custom.PolicyList{} },
+		PredicateFunc:            MatchPolicy,
+		DefaultQualifiedResource: custom.Resource("policies"),
 
 		CreateStrategy: strategy,
 		UpdateStrategy: strategy,

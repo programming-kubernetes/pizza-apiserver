@@ -26,8 +26,8 @@ import (
 
 type CustomV1alpha1Interface interface {
 	RESTClient() rest.Interface
-	FischersGetter
 	FlundersGetter
+	PoliciesGetter
 }
 
 // CustomV1alpha1Client is used to interact with features provided by the custom.programming-kubernetes.info group.
@@ -35,12 +35,12 @@ type CustomV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *CustomV1alpha1Client) Fischers() FischerInterface {
-	return newFischers(c)
-}
-
 func (c *CustomV1alpha1Client) Flunders(namespace string) FlunderInterface {
 	return newFlunders(c, namespace)
+}
+
+func (c *CustomV1alpha1Client) Policies() PolicyInterface {
+	return newPolicies(c)
 }
 
 // NewForConfig creates a new CustomV1alpha1Client for the given config.
