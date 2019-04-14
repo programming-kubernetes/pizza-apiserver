@@ -43,15 +43,13 @@ type TypeRef struct {
 }
 
 // Atom represents the smallest possible pieces of the type system.
-// Each set field in the Atom represents a possible type for the object.
-// If none of the fields are set, any object will fail validation against the atom.
 type Atom struct {
-	*Scalar `yaml:"scalar,omitempty"`
-	*List   `yaml:"list,omitempty"`
-
-	// At most, one of the below must be set, since both look the same when serialized
-	*Struct `yaml:"struct,omitempty"`
-	*Map    `yaml:"map,omitempty"`
+	// Exactly one of the below must be set.
+	*Scalar  `yaml:"scalar,omitempty"`
+	*Struct  `yaml:"struct,omitempty"`
+	*List    `yaml:"list,omitempty"`
+	*Map     `yaml:"map,omitempty"`
+	*Untyped `yaml:"untyped,omitempty"`
 }
 
 // Scalar (AKA "primitive") represents a type which has a single value which is
@@ -67,14 +65,14 @@ const (
 )
 
 // ElementRelationship is an enum of the different possible relationships
-// between the elements of container types (maps, lists, structs).
+// between the elements of container types (maps, lists, structs, untyped).
 type ElementRelationship string
 
 const (
 	// Associative only applies to lists (see the documentation there).
 	Associative = ElementRelationship("associative")
-	// Atomic makes container types (lists, maps, structs) behave
-	// as scalars / leaf fields
+	// Atomic makes container types (lists, maps, structs, untyped) behave
+	// as scalars / leaf fields (which is the default for untyped data).
 	Atomic = ElementRelationship("atomic")
 	// Separable means the items of the container type have no particular
 	// relationship (default behavior for maps and structs).
@@ -173,6 +171,22 @@ type Map struct {
 	//   separate actors to set the elements.
 	//   TODO: find a simple example.
 	// The default behavior for maps is `separable`; it's permitted to
+	// leave this unset to get the default behavior.
+	ElementRelationship ElementRelationship `yaml:"elementRelationship,omitempty"`
+}
+
+// Untyped represents types that allow arbitrary content. (Think: plugin
+// objects.)
+type Untyped struct {
+	// ElementRelationship states the relationship between the items, if
+	// container-typed data happens to be present here.
+	// * `atomic` implies that all elements depend on each other, and this
+	//   is effectively a scalar / leaf field; it doesn't make sense for
+	//   separate actors to set the elements.
+	// TODO: support "guess" (guesses at associative list keys)
+	// TODO: support "lookup" (calls a lookup function to figure out the
+	//       schema based on the data)
+	// The default behavior for untyped data is `atomic`; it's permitted to
 	// leave this unset to get the default behavior.
 	ElementRelationship ElementRelationship `yaml:"elementRelationship,omitempty"`
 }
