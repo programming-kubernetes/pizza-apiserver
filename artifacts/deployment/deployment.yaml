@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: custom-server
   namespace: custom-apiserver
@@ -24,6 +24,6 @@ spec:
         args:
         - --etcd-servers=http://localhost:2379
         - --cert-dir=/tmp/certs
-        - --port=8443
+        - --secure-port=8443
       - name: etcd
         image: quay.io/coreos/etcd:v3.2.24
