@@ -1,0 +1,6 @@
+apiVersion: restaurant.programming-kubernetes.info/v1alpha1
+kind: Pizza
+metadata:
+  name: salami
+spec:
+
