@@ -25,5 +25,7 @@ spec:
         - --etcd-servers=http://localhost:2379
         - --cert-dir=/tmp/certs
         - --secure-port=8443
+        - --v=4
       - name: etcd
         image: quay.io/coreos/etcd:v3.2.24
+        workingDir: /tmp
