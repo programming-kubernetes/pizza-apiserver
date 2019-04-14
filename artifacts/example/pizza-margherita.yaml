@@ -1,7 +1,7 @@
 apiVersion: restaurant.programming-kubernetes.info/v1alpha1
 kind: Pizza
 metadata:
-  name: margarita
+  name: margherita
 spec:
   toppings:
   - mozzarella
