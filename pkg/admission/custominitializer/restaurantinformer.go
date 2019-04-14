@@ -18,7 +18,8 @@ package custominitializer
 
 import (
 	"k8s.io/apiserver/pkg/admission"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
+
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
 )
 
 type restaurantInformerPluginInitializer struct {
@@ -37,7 +38,7 @@ func New(informers informers.SharedInformerFactory) restaurantInformerPluginInit
 // Initialize checks the initialization interfaces implemented by a plugin
 // and provide the appropriate initialization data
 func (i restaurantInformerPluginInitializer) Initialize(plugin admission.Interface) {
-	if wants, ok := plugin.(WantsInternalRestaurantInformerFactory); ok {
-		wants.SetInternalRestaurantInformerFactory(i.informers)
+	if wants, ok := plugin.(WantsRestaurantInformerFactory); ok {
+		wants.SetRestaurantInformerFactory(i.informers)
 	}
 }

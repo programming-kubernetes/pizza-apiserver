@@ -25,8 +25,8 @@ import (
 
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
-	listers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/restaurant/internalversion"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
+	listers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/restaurant/v1alpha1"
 )
 
 // Register registers a plugin
@@ -41,7 +41,7 @@ type PizzaToppingsPlugin struct {
 	toppingLister listers.ToppingLister
 }
 
-var _ = custominitializer.WantsInternalRestaurantInformerFactory(&PizzaToppingsPlugin{})
+var _ = custominitializer.WantsRestaurantInformerFactory(&PizzaToppingsPlugin{})
 
 // Admit ensures that the object in-flight is of kind Pizza.
 // In addition checks that the toppings are known.
@@ -69,11 +69,11 @@ func (d *PizzaToppingsPlugin) Validate(a admission.Attributes) error {
 	return nil
 }
 
-// SetInternalRestaurantInformerFactory gets Lister from SharedInformerFactory.
+// SetRestaurantInformerFactory gets Lister from SharedInformerFactory.
 // The lister knows how to lists Toppings.
-func (d *PizzaToppingsPlugin) SetInternalRestaurantInformerFactory(f informers.SharedInformerFactory) {
-	d.toppingLister = f.Restaurant().InternalVersion().Toppings().Lister()
-	d.SetReadyFunc(f.Restaurant().InternalVersion().Toppings().Informer().HasSynced)
+func (d *PizzaToppingsPlugin) SetRestaurantInformerFactory(f informers.SharedInformerFactory) {
+	d.toppingLister = f.Restaurant().V1alpha1().Toppings().Lister()
+	d.SetReadyFunc(f.Restaurant().V1alpha1().Toppings().Informer().HasSynced)
 }
 
 // ValidaValidateInitializationte checks whether the plugin was correctly initialized.

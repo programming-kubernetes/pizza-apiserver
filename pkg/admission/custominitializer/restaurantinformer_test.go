@@ -21,36 +21,37 @@ import (
 	"time"
 
 	"k8s.io/apiserver/pkg/admission"
+
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/fake"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
+	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/fake"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
 )
 
 // TestWantsInternalRestaurantInformerFactory ensures that the informer factory is injected
-// when the WantsInternalRestaurantInformerFactory interface is implemented by a plugin.
+// when the WantsRestaurantInformerFactory interface is implemented by a plugin.
 func TestWantsInternalRestaurantInformerFactory(t *testing.T) {
 	cs := &fake.Clientset{}
 	sf := informers.NewSharedInformerFactory(cs, time.Duration(1)*time.Second)
 	target := custominitializer.New(sf)
 
-	wantRestaurantInformerFactory := &wantInternalRestaurantInformerFactory{}
+	wantRestaurantInformerFactory := &wantRestaurantInformerFactory{}
 	target.Initialize(wantRestaurantInformerFactory)
 	if wantRestaurantInformerFactory.sf != sf {
 		t.Errorf("expected informer factory to be initialized")
 	}
 }
 
-// wantInternalRestaurantInformerFactory is a test stub that fulfills the WantsInternalRestaurantInformerFactory interface
-type wantInternalRestaurantInformerFactory struct {
+// wantRestaurantInformerFactory is a test stub that fulfills the WantsRestaurantInformerFactory interface
+type wantRestaurantInformerFactory struct {
 	sf informers.SharedInformerFactory
 }
 
-func (self *wantInternalRestaurantInformerFactory) SetInternalRestaurantInformerFactory(sf informers.SharedInformerFactory) {
+func (self *wantRestaurantInformerFactory) SetRestaurantInformerFactory(sf informers.SharedInformerFactory) {
 	self.sf = sf
 }
-func (self *wantInternalRestaurantInformerFactory) Admit(a admission.Attributes) error { return nil }
-func (self *wantInternalRestaurantInformerFactory) Handles(o admission.Operation) bool { return false }
-func (self *wantInternalRestaurantInformerFactory) ValidateInitialization() error      { return nil }
+func (self *wantRestaurantInformerFactory) Admit(a admission.Attributes) error { return nil }
+func (self *wantRestaurantInformerFactory) Handles(o admission.Operation) bool { return false }
+func (self *wantRestaurantInformerFactory) ValidateInitialization() error      { return nil }
 
-var _ admission.Interface = &wantInternalRestaurantInformerFactory{}
-var _ custominitializer.WantsInternalRestaurantInformerFactory = &wantInternalRestaurantInformerFactory{}
+var _ admission.Interface = &wantRestaurantInformerFactory{}
+var _ custominitializer.WantsRestaurantInformerFactory = &wantRestaurantInformerFactory{}

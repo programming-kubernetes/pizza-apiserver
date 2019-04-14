@@ -18,11 +18,12 @@ package custominitializer
 
 import (
 	"k8s.io/apiserver/pkg/admission"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
+
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
 )
 
-// WantsInternalRestaurantInformerFactory defines a function which sets InformerFactory for admission plugins that need it
-type WantsInternalRestaurantInformerFactory interface {
-	SetInternalRestaurantInformerFactory(informers.SharedInformerFactory)
+// WantsRestaurantInformerFactory defines a function which sets InformerFactory for admission plugins that need it
+type WantsRestaurantInformerFactory interface {
+	SetRestaurantInformerFactory(informers.SharedInformerFactory)
 	admission.InitializationValidator
 }
