@@ -2,3 +2,5 @@ package: github.com/programming-kubernetes/custom-apiserver
 import:
 - package: k8s.io/apiserver
   version: kubernetes-1.14.1
+- package: k8s.io/code-generator
+  version: kubernetes-1.14.1
