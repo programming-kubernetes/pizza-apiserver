@@ -42,10 +42,10 @@ func ValidatePizzaSpec(s *restaurant.PizzaSpec, fldPath *field.Path) field.Error
 		if len(s.Toppings[i].Name) == 0 {
 			allErrs = append(allErrs, field.Invalid(fldPath.Child("toppings").Index(i).Child("name"), s.Toppings[i].Name, "cannot be empty"))
 		} else {
-			prevNames[s.Toppings[i].Name] = true
 			if prevNames[s.Toppings[i].Name] {
 				allErrs = append(allErrs, field.Invalid(fldPath.Child("toppings").Index(i).Child("name"), s.Toppings[i].Name, "must be unique"))
 			}
+			prevNames[s.Toppings[i].Name] = true
 		}
 	}
 
