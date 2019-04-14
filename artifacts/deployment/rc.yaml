@@ -19,6 +19,9 @@ spec:
       - name: apiserver
         image: quay.io/programming-kubernetes/custom-apiserver:latest
         imagePullPolicy: Always
-        command: [ "/custom-apiserver", "--etcd-servers=http://localhost:2379" ]
+        command: ["/custom-apiserver"]
+        args:
+        - --etcd-servers=http://localhost:2379
+        - --cert-dir=/tmp/certs
       - name: etcd
         image: quay.io/coreos/etcd:v3.2.24
