@@ -15,7 +15,7 @@
 FROM golang:1.12 as build
 WORKDIR /go/src/github.com/programming-kubernetes/custom-apiserver
 COPY . .
-RUN go build .
+RUN CGO_ENABLED=0 GOOS=linux go build .
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
