@@ -34,8 +34,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0 // indirect
 	github.com/json-iterator/go v1.1.6 // indirect
-	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/munnerz/goautoneg v0.0.0-20120707110453-a547fc61f48d // indirect
 	github.com/onsi/ginkgo v1.8.0 // indirect
 	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/pborman/uuid v1.2.0 // indirect
@@ -57,17 +56,20 @@ require (
 	golang.org/x/net v0.0.0-20190328230028-74de082e2cca // indirect
 	golang.org/x/oauth2 v0.0.0-20190319182350-c85d3e98c914 // indirect
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4 // indirect
+	gonum.org/v1/gonum v0.0.0-20190413104459-5d695651a1d5 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
-	k8s.io/api v0.0.0-20190222213804-5cb15d344471 // indirect
-	k8s.io/apimachinery v0.0.0-20190221213512-86fb29eff628
-	k8s.io/apiserver v0.0.0-20190319190228-a4358799e4fe
-	k8s.io/client-go v2.0.0-alpha.0.0.20190307161346-7621a5ebb88b+incompatible
+	k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b // indirect
+	k8s.io/apimachinery v0.0.0-20190413052414-40a3f73b0fa2
+	k8s.io/apiserver v0.0.0-20190409021813-1ec86e4da56c
+	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/code-generator v0.0.0-20190413052309-5c40078c1b12
+	k8s.io/component-base v0.0.0-20190413053003-a7e0d79a8811 // indirect
+	k8s.io/gengo v0.0.0-20190327210449-e17681d19d3a // indirect
 	k8s.io/klog v0.2.1-0.20190311220638-291f19f84ceb
 	k8s.io/kube-openapi v0.0.0-20190320154901-c59034cc13d5 // indirect
 	k8s.io/utils v0.0.0-20190308190857-21c4ce38f2a7 // indirect
-	sigs.k8s.io/yaml v1.1.0 // indirect
+	sigs.k8s.io/structured-merge-diff v0.0.0-20190409171846-8b93a2f02b76 // indirect
 )
 
 module github.com/programming-kubernetes/custom-apiserver
