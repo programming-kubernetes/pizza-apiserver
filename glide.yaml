@@ -1,0 +1,4 @@
+package: github.com/programming-kubernetes/custom-apiserver
+import:
+- package: k8s.io/apiserver
+  version: kubernetes-1.14.1
