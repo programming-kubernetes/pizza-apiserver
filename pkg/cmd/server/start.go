@@ -31,8 +31,8 @@ import (
 	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
 	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
-	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion"
+	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned"
+	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
 )
 
 const defaultEtcdPathPrefix = "/registry/custom-apiserver.programming-kubernetes.info"
@@ -115,7 +115,7 @@ func (o *CustomServerOptions) Config() (*apiserver.Config, error) {
 	}
 
 	serverConfig := genericapiserver.NewRecommendedConfig(apiserver.Codecs)
-	if err := o.RecommendedOptions.ApplyTo(serverConfig, apiserver.Scheme); err != nil {
+	if err := o.RecommendedOptions.ApplyTo(serverConfig); err != nil {
 		return nil, err
 	}
 

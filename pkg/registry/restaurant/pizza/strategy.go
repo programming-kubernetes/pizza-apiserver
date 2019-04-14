@@ -39,12 +39,12 @@ func NewStrategy(typer runtime.ObjectTyper) pizzaStrategy {
 
 // GetAttrs returns labels.Set, fields.Set, the presence of Initializers if any
 // and error in case the given runtime.Object is not a Pizza
-func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, bool, error) {
+func GetAttrs(obj runtime.Object) (labels.Set, fields.Set, error) {
 	apiserver, ok := obj.(*restaurant.Pizza)
 	if !ok {
-		return nil, nil, false, fmt.Errorf("given object is not a Pizza")
+		return nil, nil, fmt.Errorf("given object is not a Pizza")
 	}
-	return labels.Set(apiserver.ObjectMeta.Labels), SelectableFields(apiserver), apiserver.Initializers != nil, nil
+	return labels.Set(apiserver.ObjectMeta.Labels), SelectableFields(apiserver), nil
 }
 
 // MatchPizza is the filter used by the generic etcd backend to watch events
