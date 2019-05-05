@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
 )
 
 // Interface provides access to all the informers in this group version.

@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: custom-server
-  namespace: custom-apiserver
+  name: pizza-apiserver
+  namespace: pizza-apiserver
   labels:
     apiserver: "true"
 spec:
@@ -19,9 +19,9 @@ spec:
       serviceAccountName: apiserver
       containers:
       - name: apiserver
-        image: quay.io/programming-kubernetes/custom-apiserver:latest
+        image: quay.io/programming-kubernetes/pizza-apiserver:latest
         imagePullPolicy: Always
-        command: ["/custom-apiserver"]
+        command: ["/pizza-apiserver"]
         args:
         - --etcd-servers=http://localhost:2379
         - --cert-dir=/tmp/certs

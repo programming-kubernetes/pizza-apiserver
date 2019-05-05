@@ -22,9 +22,9 @@ import (
 
 	"k8s.io/apiserver/pkg/admission"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/fake"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/custominitializer"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/fake"
+	informers "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/externalversions"
 )
 
 // TestWantsInternalRestaurantInformerFactory ensures that the informer factory is injected

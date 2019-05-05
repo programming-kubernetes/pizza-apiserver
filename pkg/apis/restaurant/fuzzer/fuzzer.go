@@ -19,7 +19,7 @@ package fuzzer
 import (
 	fuzz "github.com/google/gofuzz"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 
 	runtimeserializer "k8s.io/apimachinery/pkg/runtime/serializer"
 )

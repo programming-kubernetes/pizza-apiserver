@@ -1,4 +1,4 @@
-package: github.com/programming-kubernetes/custom-apiserver
+package: github.com/programming-kubernetes/pizza-apiserver
 import:
 - package: k8s.io/apiserver
   version: kubernetes-1.14.1

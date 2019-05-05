@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/tools/cache"

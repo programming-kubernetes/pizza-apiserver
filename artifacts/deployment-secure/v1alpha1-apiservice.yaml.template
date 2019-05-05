@@ -9,5 +9,5 @@ spec:
   versionPriority: 15
   service:
     name: api
-    namespace: custom-apiserver
+    namespace: pizza-apiserver
   version: v1alpha1

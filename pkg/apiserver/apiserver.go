@@ -25,11 +25,11 @@ import (
 	"k8s.io/apiserver/pkg/registry/rest"
 	genericapiserver "k8s.io/apiserver/pkg/server"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/install"
-	customregistry "github.com/programming-kubernetes/custom-apiserver/pkg/registry"
-	pizzastorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/restaurant/pizza"
-	toppingstorage "github.com/programming-kubernetes/custom-apiserver/pkg/registry/restaurant/topping"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/install"
+	customregistry "github.com/programming-kubernetes/pizza-apiserver/pkg/registry"
+	pizzastorage "github.com/programming-kubernetes/pizza-apiserver/pkg/registry/restaurant/pizza"
+	toppingstorage "github.com/programming-kubernetes/pizza-apiserver/pkg/registry/restaurant/topping"
 )
 
 var (
@@ -96,7 +96,7 @@ func (cfg *Config) Complete() CompletedConfig {
 
 // New returns a new instance of CustomServer from the given config.
 func (c completedConfig) New() (*CustomServer, error) {
-	genericServer, err := c.GenericConfig.New("custom-apiserver", genericapiserver.NewEmptyDelegate())
+	genericServer, err := c.GenericConfig.New("pizza-apiserver", genericapiserver.NewEmptyDelegate())
 	if err != nil {
 		return nil, err
 	}

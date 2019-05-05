@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/scheme"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion/scheme"
 	rest "k8s.io/client-go/rest"
 )
 

@@ -19,7 +19,7 @@ limitations under the License.
 package scheme
 
 import (
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/install"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/install"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

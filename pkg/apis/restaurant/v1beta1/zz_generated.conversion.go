@@ -23,7 +23,7 @@ package v1beta1
 import (
 	unsafe "unsafe"
 
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 	conversion "k8s.io/apimachinery/pkg/conversion"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 )

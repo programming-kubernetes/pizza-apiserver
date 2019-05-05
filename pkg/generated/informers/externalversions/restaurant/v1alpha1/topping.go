@@ -21,10 +21,10 @@ package v1alpha1
 import (
 	time "time"
 
-	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	versioned "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned"
-	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions/internalinterfaces"
-	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/restaurant/v1alpha1"
+	restaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	versioned "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned"
+	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/listers/restaurant/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

@@ -13,11 +13,11 @@
 # limitations under the License.
 
 FROM golang:1.12 as build
-WORKDIR /go/src/github.com/programming-kubernetes/custom-apiserver
+WORKDIR /go/src/github.com/programming-kubernetes/pizza-apiserver
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build .
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
-COPY --from=build /go/src/github.com/programming-kubernetes/custom-apiserver/custom-apiserver /
-ENTRYPOINT ["/custom-apiserver"]
+COPY --from=build /go/src/github.com/programming-kubernetes/pizza-apiserver/pizza-apiserver /
+ENTRYPOINT ["/pizza-apiserver"]

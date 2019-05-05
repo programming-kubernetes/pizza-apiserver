@@ -21,8 +21,8 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	v1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1beta1"
+	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	v1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1beta1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
