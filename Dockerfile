@@ -15,7 +15,7 @@
 FROM golang:1.12 as build
 WORKDIR /go/src/github.com/programming-kubernetes/pizza-apiserver
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build .
+RUN GO111MODULE=on CGO_ENABLED=0 GOOS=linux go build .
 
 FROM alpine:latest
 RUN apk --no-cache add ca-certificates
