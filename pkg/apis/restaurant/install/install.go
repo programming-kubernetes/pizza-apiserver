@@ -19,9 +19,9 @@ package install
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1beta1"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1beta1"
 )
 
 // Install registers the API group and adds types to a scheme

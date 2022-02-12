@@ -19,8 +19,8 @@ limitations under the License.
 package scheme
 
 import (
-	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	restaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1beta1"
+	restaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	restaurantv1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1beta1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

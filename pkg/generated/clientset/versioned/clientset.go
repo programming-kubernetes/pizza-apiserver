@@ -19,8 +19,8 @@ limitations under the License.
 package versioned
 
 import (
-	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
-	restaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
+	restaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
+	restaurantv1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"

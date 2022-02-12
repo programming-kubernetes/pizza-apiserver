@@ -1,13 +1,13 @@
 apiVersion: apiregistration.k8s.io/v1beta1
 kind: APIService
 metadata:
-  name: v1alpha1.restaurant.programming-kubernetes.info
+  name: v1beta1.restaurant.programming-kubernetes.info
 spec:
-  insecureSkipTLSVerify: true
+  caBundle: CERT
   group: restaurant.programming-kubernetes.info
   groupPriorityMinimum: 1000
-  versionPriority: 15
+  versionPriority: 20
   service:
     name: api
     namespace: pizza-apiserver
-  version: v1alpha1
+  version: v1beta1

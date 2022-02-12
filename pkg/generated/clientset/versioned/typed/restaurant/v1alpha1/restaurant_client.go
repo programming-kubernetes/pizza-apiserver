@@ -19,8 +19,8 @@ limitations under the License.
 package v1alpha1
 
 import (
-	v1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/scheme"
+	v1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/scheme"
 	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
 )

@@ -21,10 +21,10 @@ package internalversion
 import (
 	time "time"
 
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
-	clientsetinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
-	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
-	internalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/restaurant/internalversion"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
+	clientsetinternalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion"
+	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	internalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/listers/restaurant/internalversion"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	watch "k8s.io/apimachinery/pkg/watch"

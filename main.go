@@ -24,7 +24,7 @@ import (
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	"k8s.io/component-base/logs"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/cmd/server"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/cmd/server"
 
 	// load all auth plugins
 	_ "k8s.io/client-go/plugin/pkg/client/auth"

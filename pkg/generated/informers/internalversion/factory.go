@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	internalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion"
-	internalinterfaces "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/internalversion/restaurant"
+	internalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion"
+	internalinterfaces "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/internalinterfaces"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/internalversion/restaurant"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

@@ -27,15 +27,15 @@ import (
 	genericapiserver "k8s.io/apiserver/pkg/server"
 	genericoptions "k8s.io/apiserver/pkg/server/options"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/plugin/pizzatoppings"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant/v1alpha1"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apiserver"
-	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/plugin/pizzatoppings"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/custominitializer"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant/v1alpha1"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apiserver"
+	clientset "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned"
+	informers "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/externalversions"
 )
 
-const defaultEtcdPathPrefix = "/registry/custom-apiserver.programming-kubernetes.info"
+const defaultEtcdPathPrefix = "/registry/pizza-apiserver.programming-kubernetes.info"
 
 type CustomServerOptions struct {
 	RecommendedOptions *genericoptions.RecommendedOptions
@@ -48,7 +48,7 @@ func NewCustomServerOptions() *CustomServerOptions {
 		RecommendedOptions: genericoptions.NewRecommendedOptions(
 			defaultEtcdPathPrefix,
 			apiserver.Codecs.LegacyCodec(v1alpha1.SchemeGroupVersion),
-			genericoptions.NewProcessInfo("custom-apiserver", "custom-apiserver"),
+			genericoptions.NewProcessInfo("pizza-apiserver", "pizza-apiserver"),
 		),
 	}
 
@@ -137,7 +137,7 @@ func (o CustomServerOptions) Run(stopCh <-chan struct{}) error {
 		return err
 	}
 
-	server.GenericAPIServer.AddPostStartHook("start-custom-server-informers", func(context genericapiserver.PostStartHookContext) error {
+	server.GenericAPIServer.AddPostStartHook("start-pizza-apiserver-informers", func(context genericapiserver.PostStartHookContext) error {
 		config.GenericConfig.SharedInformerFactory.Start(context.StopCh)
 		o.SharedInformerFactory.Start(context.StopCh)
 		return nil

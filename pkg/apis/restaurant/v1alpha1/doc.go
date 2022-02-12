@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 // +k8s:deepcopy-gen=package
-// +k8s:conversion-gen=github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant
+// +k8s:conversion-gen=github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant
 // +k8s:defaulter-gen=TypeMeta
 // +groupName=restaurant.programming-kubernetes.info
 

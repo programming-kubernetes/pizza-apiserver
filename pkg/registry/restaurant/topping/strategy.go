@@ -28,7 +28,7 @@ import (
 	"k8s.io/apiserver/pkg/storage"
 	"k8s.io/apiserver/pkg/storage/names"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 )
 
 // NewStrategy creates and returns a toppingStrategy instance

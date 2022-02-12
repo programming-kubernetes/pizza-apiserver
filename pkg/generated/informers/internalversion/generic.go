@@ -21,7 +21,7 @@ package internalversion
 import (
 	"fmt"
 
-	restaurant "github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	restaurant "github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )

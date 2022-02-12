@@ -19,7 +19,7 @@ package v1alpha1
 import (
 	"k8s.io/apimachinery/pkg/conversion"
 	"k8s.io/apimachinery/pkg/runtime"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 )
 
 func addConversionFuncs(scheme *runtime.Scheme) error {

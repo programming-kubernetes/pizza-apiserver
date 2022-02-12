@@ -3,7 +3,7 @@ kind: APIService
 metadata:
   name: v1alpha1.restaurant.programming-kubernetes.info
 spec:
-  insecureSkipTLSVerify: true
+  caBundle: CERT
   group: restaurant.programming-kubernetes.info
   groupPriorityMinimum: 1000
   versionPriority: 15

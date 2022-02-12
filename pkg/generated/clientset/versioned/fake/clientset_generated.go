@@ -19,11 +19,11 @@ limitations under the License.
 package fake
 
 import (
-	clientset "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned"
-	restaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
-	fakerestaurantv1alpha1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1/fake"
-	restaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
-	fakerestaurantv1beta1 "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1/fake"
+	clientset "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned"
+	restaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1"
+	fakerestaurantv1alpha1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1alpha1/fake"
+	restaurantv1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1"
+	fakerestaurantv1beta1 "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/versioned/typed/restaurant/v1beta1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"

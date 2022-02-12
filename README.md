@@ -1,4 +1,4 @@
-# custom-apiserver
+# pizza-apiserver
 An aggregated custom API server
 
 ## Clone

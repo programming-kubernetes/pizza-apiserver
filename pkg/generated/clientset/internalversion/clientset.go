@@ -19,7 +19,7 @@ limitations under the License.
 package internalversion
 
 import (
-	restaurantinternalversion "github.com/programming-kubernetes/custom-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
+	restaurantinternalversion "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/clientset/internalversion/typed/restaurant/internalversion"
 	discovery "k8s.io/client-go/discovery"
 	rest "k8s.io/client-go/rest"
 	flowcontrol "k8s.io/client-go/util/flowcontrol"

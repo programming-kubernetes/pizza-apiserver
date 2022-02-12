@@ -23,10 +23,10 @@ import (
 	"k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apiserver/pkg/admission"
 
-	"github.com/programming-kubernetes/custom-apiserver/pkg/admission/custominitializer"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
-	informers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/informers/externalversions"
-	listers "github.com/programming-kubernetes/custom-apiserver/pkg/generated/listers/restaurant/v1alpha1"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/admission/custominitializer"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
+	informers "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/informers/externalversions"
+	listers "github.com/programming-kubernetes/pizza-apiserver/pkg/generated/listers/restaurant/v1alpha1"
 )
 
 // Register registers a plugin

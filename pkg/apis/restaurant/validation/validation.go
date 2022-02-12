@@ -18,7 +18,7 @@ package validation
 
 import (
 	"k8s.io/apimachinery/pkg/util/validation/field"
-	"github.com/programming-kubernetes/custom-apiserver/pkg/apis/restaurant"
+	"github.com/programming-kubernetes/pizza-apiserver/pkg/apis/restaurant"
 )
 
 // ValidatePizza validates a Pizza.
